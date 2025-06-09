@@ -4,8 +4,18 @@ const API = axios.create({
   baseURL: import.meta.env.VITE_API_URL + "/api",
 });
 
-export const registrarUsuario = (email, password) =>
-  API.post("/register", { username: email, password });
+// Registro
+export const registrarUsuario = (email, password) => {
+  const form = new FormData();
+  form.append("username", email);
+  form.append("password", password);
+  return API.post("/register", form);
+};
 
-export const iniciarSesion = (email, password) =>
-  API.post("/login", { username: email, password });
+// Login
+export const iniciarSesion = (email, password) => {
+  const form = new FormData();
+  form.append("username", email);
+  form.append("password", password);
+  return API.post("/login", form);
+};
